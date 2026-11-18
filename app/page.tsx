@@ -17,46 +17,27 @@ export default function Home() {
 
           <div className="mx-auto max-w-5xl text-center relative z-10 animate-fade">
             <span className="text-[10px] uppercase tracking-[0.4em] text-primary mb-6 block font-bold border border-primary/20 bg-primary/5 px-4 py-1.5 rounded-full inline-block">
-              Exclusive Access Only
+              Operations and AI automation
             </span>
             <h1 className="text-6xl md:text-8xl font-outfit font-bold text-white mb-8 tracking-tighter leading-[0.9]">
-              Precision Investing in <br />
-              <span className="text-gradient">Small-Cap Markets.</span>
+              Consulting for <br />
+              <span className="text-gradient">legacy small businesses.</span>
             </h1>
             <p className="text-lg md:text-xl text-text-dim max-w-2xl mx-auto mb-12 leading-relaxed">
-              We identify undervalued opportunities where institutional eyes rarely venture. Our bespoke approach ensures high-conviction participation in the future of industry leaders.
+              Small Cap Consulting helps established small businesses with day-to-day operations and with automating repetitive work.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <button type="button" className="btn-premium">
-                View Active Mandates
-              </button>
+              <Link href="#contact" className="btn-premium">
+                Get in Touch
+              </Link>
               <Link href="/philosophy" className="btn-outline">
                 Our Philosophy
               </Link>
             </div>
           </div>
-
-          <div className="mt-24 grid grid-cols-2 md:grid-cols-4 gap-12 border-y border-white/5 py-12 w-full max-w-7xl px-6 opacity-60">
-            <div className="text-center">
-              <div className="text-2xl font-bold text-white mb-1">$450M+</div>
-              <div className="text-[10px] uppercase tracking-widest text-text-dim">AUM</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-white mb-1">12%</div>
-              <div className="text-[10px] uppercase tracking-widest text-text-dim">Avg. Equity Stake</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-white mb-1">45+</div>
-              <div className="text-[10px] uppercase tracking-widest text-text-dim">Global LP&apos;s</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-white mb-1">2008</div>
-              <div className="text-[10px] uppercase tracking-widest text-text-dim">Founded</div>
-            </div>
-          </div>
         </section>
 
-        <section id="opportunities" className="py-32 px-6 bg-secondary relative">
+        <section id="services" className="py-32 px-6 bg-secondary relative">
           <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div className="relative">
               <div className="aspect-[4/5] bg-[#1a1c22] border border-white/5 rounded-2xl p-2 relative overflow-hidden group">
@@ -72,13 +53,13 @@ export default function Home() {
                 <div className="absolute top-1/2 left-0 w-full h-px bg-white/5 rotate-12"></div>
               </div>
               <div className="absolute -bottom-10 -right-10 glass p-8 rounded-xl max-w-xs gold-glow hidden md:block">
-                <h4 className="text-primary font-bold mb-2 uppercase tracking-widest text-xs">Axiom I</h4>
-                <p className="text-sm text-white italic">&quot;Alpha lives in the shadows of the unnoticed.&quot;</p>
+                <h4 className="text-primary font-bold mb-2 uppercase tracking-widest text-xs">Small Cap Consulting</h4>
+                <p className="text-sm text-white">Operations and AI automation for legacy small businesses.</p>
               </div>
             </div>
             <div>
               <h2 className="text-4xl md:text-5xl font-outfit font-bold text-white mb-8">
-                A Higher Standard of <span className="text-primary italic">Diligence.</span>
+                Practical support for how a <span className="text-primary italic">business runs.</span>
               </h2>
               <div className="space-y-6">
                 <div className="flex gap-6">
@@ -86,9 +67,9 @@ export default function Home() {
                     01
                   </div>
                   <div>
-                    <h3 className="text-xl text-white mb-2">Micro-Sector Expertise</h3>
+                    <h3 className="text-xl text-white mb-2">Operations</h3>
                     <p className="text-text-dim leading-relaxed">
-                      Narrow focus allows for deeper integration and understanding of target markets, far beyond mathematical modeling.
+                      We spend time on how work moves through the company: handoffs, tools, and tasks people repeat.
                     </p>
                   </div>
                 </div>
@@ -97,9 +78,9 @@ export default function Home() {
                     02
                   </div>
                   <div>
-                    <h3 className="text-xl text-white mb-2">Network of Trust</h3>
+                    <h3 className="text-xl text-white mb-2">AI automation</h3>
                     <p className="text-text-dim leading-relaxed">
-                      Our relationships with founders and key stakeholders provide insights that are not available through open-market data.
+                      When a repeated task is well understood, we help automate it.
                     </p>
                   </div>
                 </div>
@@ -108,9 +89,9 @@ export default function Home() {
                     03
                   </div>
                   <div>
-                    <h3 className="text-xl text-white mb-2">Preservation First</h3>
+                    <h3 className="text-xl text-white mb-2">Established companies</h3>
                     <p className="text-text-dim leading-relaxed">
-                      We optimize for asymmetrical upside while maintaining a rigorous floor on capital risk and downside projection.
+                      The work is for legacy small businesses that already have customers, staff, and a way of operating.
                     </p>
                   </div>
                 </div>

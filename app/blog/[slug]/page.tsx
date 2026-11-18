@@ -4,8 +4,14 @@ import ReactMarkdown from "react-markdown";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { getAllPosts, getPostBySlug } from "@/lib/posts";
+import { pageSocial } from "@/lib/site";
 
 type Props = { params: Promise<{ slug: string }> };
+
+export const revalidate = 3600;
+
+// Slugs that were unpublished at build time can still render once their date arrives.
+export const dynamicParams = true;
 
 export async function generateStaticParams() {
   return getAllPosts().map((p) => ({ slug: p.slug }));
@@ -15,10 +21,10 @@ export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
   const post = getPostBySlug(slug);
   if (!post) return {};
-  return {
-    title: `${post.title} | SmallCap Private Investments`,
-    description: post.description,
-  };
+  return pageSocial(post.title, post.description, {
+    type: "article",
+    path: `/blog/${post.slug}`,
+  });
 }
 
 export default async function BlogPostPage({ params }: Props) {

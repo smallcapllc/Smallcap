@@ -2,6 +2,12 @@
   "version": 2,
   "framework": "nextjs",
   "cleanUrls": true,
+  "crons": [
+    {
+      "path": "/api/cron/publish-blog",
+      "schedule": "0 10 * * *"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",

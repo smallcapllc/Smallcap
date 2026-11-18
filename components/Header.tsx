@@ -6,7 +6,7 @@ import { useState } from "react";
 const nav = [
   { href: "/philosophy", label: "Philosophy" },
   { href: "/blog", label: "Blog" },
-  { href: "#opportunities", label: "Opportunities" },
+  { href: "/#services", label: "Services" },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -20,8 +20,8 @@ export default function Header() {
           <div className="w-8 h-8 border border-primary flex items-center justify-center font-serif text-primary font-bold group-hover:scale-110 transition-transform">
             SC
           </div>
-          <span className="text-xl font-bold tracking-tight text-white font-outfit uppercase">
-            SmallCap <span className="text-primary tracking-widest font-light ml-1">Private</span>
+          <span className="text-sm sm:text-lg md:text-xl font-bold tracking-tight text-white font-outfit uppercase whitespace-nowrap">
+            Small Cap <span className="text-primary tracking-widest font-light ml-1">Consulting</span>
           </span>
         </Link>
 
@@ -36,8 +36,8 @@ export default function Header() {
             </Link>
           ))}
           <div className="w-px h-4 bg-white/10 mx-2"></div>
-          <Link href="/portal" className="btn-outline px-6 py-2.5 !text-[10px]">
-            Investor Portal
+          <Link href="#contact" className="btn-outline px-6 py-2.5 !text-[10px]">
+            Get in Touch
           </Link>
         </nav>
 
@@ -73,11 +73,11 @@ export default function Header() {
             </Link>
           ))}
           <Link
-            href="/portal"
+            href="#contact"
             className="btn-outline px-6 py-2.5 !text-[10px] text-center"
             onClick={() => setOpen(false)}
           >
-            Investor Portal
+            Get in Touch
           </Link>
         </div>
       )}
