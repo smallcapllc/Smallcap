@@ -2,11 +2,14 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { getAllPosts } from "@/lib/posts";
+import { pageSocial } from "@/lib/site";
 
-export const metadata = {
-  title: "Blog | SmallCap Private Investments",
-  description: "Insights on deal flow, succession, diligence, and operator life from SmallCap Private Investments.",
-};
+export const revalidate = 3600;
+
+const blogDescription =
+  "Notes from Small Cap Consulting on succession, diligence, and running an owner-operated business.";
+
+export const metadata = pageSocial("Blog", blogDescription, { path: "/blog" });
 
 export default function BlogIndex() {
   const posts = getAllPosts();
@@ -21,10 +24,10 @@ export default function BlogIndex() {
               Insights
             </span>
             <h1 className="text-5xl md:text-7xl font-outfit font-bold text-white mb-6 tracking-tighter">
-              The SmallCap <span className="text-primary italic">Journal.</span>
+              The Small Cap Consulting <span className="text-primary italic">Journal.</span>
             </h1>
             <p className="text-xl text-text-dim max-w-2xl leading-relaxed">
-              Practical notes on sourcing, succession, diligence, and the discipline of ownership.
+              Notes on succession, diligence, and running an owner-operated business.
             </p>
           </div>
 

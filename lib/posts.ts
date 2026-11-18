@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { isPostLive, normalizePostDate } from "./publish-date";
 
 const postsDirectory = path.join(process.cwd(), "content/blog");
 
@@ -16,38 +17,51 @@ export type Post = PostMeta & {
   content: string;
 };
 
-export function getAllPosts(): PostMeta[] {
-  const files = fs.readdirSync(postsDirectory).filter((f) => f.endsWith(".mdx"));
-  const posts = files.map((filename) => {
-    const raw = fs.readFileSync(path.join(postsDirectory, filename), "utf8");
-    const { data } = matter(raw);
-    return {
-      title: String(data.title ?? ""),
-      slug: String(data.slug ?? filename.replace(/\.mdx$/, "")),
-      description: String(data.description ?? ""),
-      date: String(data.date ?? ""),
-      tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
-    };
-  });
-  return posts.sort((a, b) => (a.date < b.date ? 1 : -1));
-}
-
-export function getPostBySlug(slug: string): Post | null {
-  const files = fs.readdirSync(postsDirectory).filter((f) => f.endsWith(".mdx"));
-  for (const filename of files) {
-    const raw = fs.readFileSync(path.join(postsDirectory, filename), "utf8");
-    const { data, content } = matter(raw);
-    const postSlug = String(data.slug ?? filename.replace(/\.mdx$/, ""));
-    if (postSlug === slug) {
+function loadPosts(): Post[] {
+  return fs
+    .readdirSync(postsDirectory)
+    .filter((filename) => filename.endsWith(".mdx"))
+    .map((filename) => {
+      const raw = fs.readFileSync(path.join(postsDirectory, filename), "utf8");
+      const { data, content } = matter(raw);
       return {
         title: String(data.title ?? ""),
-        slug: postSlug,
+        slug: String(data.slug ?? filename.replace(/\.mdx$/, "")),
         description: String(data.description ?? ""),
-        date: String(data.date ?? ""),
+        date: normalizePostDate(data.date),
         tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
         content,
       };
-    }
-  }
-  return null;
+    });
+}
+
+function toMeta(post: Post): PostMeta {
+  return {
+    title: post.title,
+    slug: post.slug,
+    description: post.description,
+    date: post.date,
+    tags: post.tags,
+  };
+}
+
+/**
+ * Every slug on disk, including posts whose date has not arrived.
+ * Public pages must use getAllPosts / getPostBySlug instead.
+ */
+export function listAllPostSlugs(): string[] {
+  return loadPosts().map((post) => post.slug);
+}
+
+export function getAllPosts(now: Date = new Date()): PostMeta[] {
+  return loadPosts()
+    .filter((post) => isPostLive(post.date, now))
+    .map(toMeta)
+    .sort((a, b) => (a.date < b.date ? 1 : -1));
+}
+
+export function getPostBySlug(slug: string, now: Date = new Date()): Post | null {
+  const post = loadPosts().find((entry) => entry.slug === slug);
+  if (!post || !isPostLive(post.date, now)) return null;
+  return post;
 }

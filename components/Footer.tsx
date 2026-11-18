@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { siteDescription } from "@/lib/site";
 
 export default function Footer() {
   return (
@@ -11,11 +12,11 @@ export default function Footer() {
                 SC
               </div>
               <span className="font-outfit font-bold uppercase tracking-tight">
-                SmallCap <span className="text-primary font-light">Private</span>
+                Small Cap <span className="text-primary font-light">Consulting</span>
               </span>
             </div>
             <p className="text-text-dim max-w-sm leading-relaxed text-sm">
-              Providing exclusive access to institutional-grade private investment opportunities in the niche small-cap domain. Quality over quantity, precision over volume.
+              {siteDescription}
             </p>
           </div>
           <div>
@@ -32,13 +33,13 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <a href="#opportunities" className="hover:text-primary transition-colors">
-                  Opportunities
-                </a>
+                <Link href="/#services" className="hover:text-primary transition-colors">
+                  Services
+                </Link>
               </li>
               <li>
-                <a href="#portal" className="hover:text-primary transition-colors">
-                  Investor Login
+                <a href="#contact" className="hover:text-primary transition-colors">
+                  Contact
                 </a>
               </li>
             </ul>
@@ -54,7 +55,7 @@ export default function Footer() {
         </div>
         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-[10px] uppercase tracking-[0.2em] text-text-dim">
-            © 2024 SmallCap Private Investments. All rights reserved.
+            © 2024 Small Cap Consulting. All rights reserved.
           </p>
           <div className="flex gap-6">
             <a href="#" className="text-[10px] uppercase tracking-[0.2em] text-text-dim hover:text-primary transition-colors">

@@ -1,5 +1,12 @@
+import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { pageSocial } from "@/lib/site";
+
+const description =
+  "How Small Cap Consulting helps legacy small businesses with operations and AI automation.";
+
+export const metadata = pageSocial("Philosophy", description, { path: "/philosophy" });
 
 export default function Philosophy() {
   return (
@@ -10,10 +17,10 @@ export default function Philosophy() {
         <div className="mx-auto max-w-7xl px-6">
           <div className="mb-20 animate-fade">
             <h1 className="text-5xl md:text-7xl font-outfit font-bold text-white mb-8 tracking-tighter">
-              The SmallCap <span className="text-primary italic">Axioms.</span>
+              The Small Cap Consulting <span className="text-primary italic">approach.</span>
             </h1>
             <p className="text-xl text-text-dim max-w-3xl leading-relaxed">
-              Our investment philosophy is built on three immutable pillars: asymmetric insight, disciplined friction, and long-term stewardships.
+              We help legacy small businesses with operations and AI automation. The work starts from how the company already runs.
             </p>
           </div>
 
@@ -23,9 +30,9 @@ export default function Philosophy() {
               <div className="text-primary font-mono text-xs tracking-[0.3em] mb-6 uppercase block font-bold">
                 Pillar I
               </div>
-              <h3 className="text-2xl font-bold text-white mb-6">Asymmetric Insight</h3>
+              <h3 className="text-2xl font-bold text-white mb-6">Operations</h3>
               <p className="text-text-dim leading-relaxed text-sm">
-                We look for markets where the spread between perceived risk and actual risk is widest. This usually occurs in niche sectors overlooked by multi-strategy funds.
+                We look at how work moves: who does it, which tools are involved, and which steps happen again and again.
               </p>
             </div>
             <div className="glass p-10 rounded-2xl relative overflow-hidden group hover:border-primary/30 transition-all duration-500">
@@ -33,9 +40,9 @@ export default function Philosophy() {
               <div className="text-primary font-mono text-xs tracking-[0.3em] mb-6 uppercase block font-bold">
                 Pillar II
               </div>
-              <h3 className="text-2xl font-bold text-white mb-6">Disciplined Friction</h3>
+              <h3 className="text-2xl font-bold text-white mb-6">AI automation</h3>
               <p className="text-text-dim leading-relaxed text-sm">
-                We introduce intentional friction in our decision-making process to eliminate emotional bias. Every investment requires a 90-day deep-dive before capital commitment.
+                When a task is repetitive and well understood, we help automate it.
               </p>
             </div>
             <div className="glass p-10 rounded-2xl relative overflow-hidden group hover:border-primary/30 transition-all duration-500">
@@ -43,9 +50,9 @@ export default function Philosophy() {
               <div className="text-primary font-mono text-xs tracking-[0.3em] mb-6 uppercase block font-bold">
                 Pillar III
               </div>
-              <h3 className="text-2xl font-bold text-white mb-6">Active Stewardship</h3>
+              <h3 className="text-2xl font-bold text-white mb-6">Legacy businesses</h3>
               <p className="text-text-dim leading-relaxed text-sm">
-                We are not passive observers. We secure board seats or advisory roles to ensure that our portfolio companies are following a path of sustainable excellence.
+                The companies we have in mind are established and owner-operated, with a way of working that is already in place.
               </p>
             </div>
           </div>
@@ -53,18 +60,18 @@ export default function Philosophy() {
           <div className="bg-secondary rounded-3xl p-12 md:p-20 border border-white/5 relative overflow-hidden">
             <div className="relative z-10 text-center max-w-3xl mx-auto">
               <h2 className="text-3xl md:text-5xl font-outfit font-bold text-white mb-8">
-                Ready to explore our <span className="text-gradient">Active Mandates?</span>
+                Talk with <span className="text-gradient">Small Cap Consulting.</span>
               </h2>
               <p className="text-text-dim mb-12 text-lg">
-                Qualified Institutional Buyers and Accredited Investors may request access to our current private offerings and performance disclosures.
+                If you run a legacy small business and want to talk about operations or AI automation, get in touch.
               </p>
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                <button type="button" className="btn-premium">
-                  Register Interest
-                </button>
-                <button type="button" className="btn-outline">
-                  Download Profile (PDF)
-                </button>
+                <Link href="#contact" className="btn-premium">
+                  Get in Touch
+                </Link>
+                <Link href="/blog" className="btn-outline">
+                  Read the Journal
+                </Link>
               </div>
             </div>
             <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-primary/5 rounded-full blur-[80px]"></div>
