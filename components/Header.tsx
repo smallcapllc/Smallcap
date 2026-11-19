@@ -1,17 +1,19 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const nav = [
   { href: "/philosophy", label: "Philosophy" },
   { href: "/blog", label: "Blog" },
   { href: "/#services", label: "Services" },
-  { href: "#contact", label: "Contact" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 glass border-b border-white/5 h-20 flex items-center">
@@ -30,14 +32,16 @@ export default function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="text-xs uppercase tracking-widest text-text-dim hover:text-primary transition-colors"
+              className={`text-xs uppercase tracking-widest transition-colors ${
+                pathname === item.href ? "text-primary" : "text-text-dim hover:text-primary"
+              }`}
             >
               {item.label}
             </Link>
           ))}
           <div className="w-px h-4 bg-white/10 mx-2"></div>
-          <Link href="#contact" className="btn-outline px-6 py-2.5 !text-[10px]">
-            Get in Touch
+          <Link href="/book" className="btn-outline px-6 py-2.5 !text-[10px]">
+            Book a call
           </Link>
         </nav>
 
@@ -66,18 +70,20 @@ export default function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="text-xs uppercase tracking-widest text-text-dim hover:text-primary transition-colors"
+              className={`text-xs uppercase tracking-widest transition-colors ${
+                pathname === item.href ? "text-primary" : "text-text-dim hover:text-primary"
+              }`}
               onClick={() => setOpen(false)}
             >
               {item.label}
             </Link>
           ))}
           <Link
-            href="#contact"
+            href="/book"
             className="btn-outline px-6 py-2.5 !text-[10px] text-center"
             onClick={() => setOpen(false)}
           >
-            Get in Touch
+            Book a call
           </Link>
         </div>
       )}
