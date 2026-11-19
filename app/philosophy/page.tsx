@@ -66,7 +66,7 @@ export default function Philosophy() {
                 If you run a legacy small business and want to talk about operations or AI automation, get in touch.
               </p>
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                <Link href="#contact" className="btn-premium">
+                <Link href="/contact" className="btn-premium">
                   Get in Touch
                 </Link>
                 <Link href="/blog" className="btn-outline">

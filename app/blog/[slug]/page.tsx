@@ -3,8 +3,9 @@ import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { replaceBookingLinks } from "@/lib/booking-cta";
 import { getAllPosts, getPostBySlug } from "@/lib/posts";
-import { pageSocial } from "@/lib/site";
+import { bookingUrl, pageSocial } from "@/lib/site";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -32,8 +33,9 @@ export default async function BlogPostPage({ params }: Props) {
   const post = getPostBySlug(slug);
   if (!post) notFound();
 
-  // Strip the leading H1 from markdown body (title shown in page chrome)
-  const body = post.content.replace(/^\s*#\s+.+\n+/, "");
+  // Strip the leading H1 from markdown body (title shown in page chrome).
+  // BOOKING-LINK in future posts resolves to the fit-call page.
+  const body = replaceBookingLinks(post.content.replace(/^\s*#\s+.+\n+/, ""));
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -64,7 +66,18 @@ export default async function BlogPostPage({ params }: Props) {
             <p className="text-lg text-text-dim leading-relaxed">{post.description}</p>
           </div>
           <div className="blog-prose border-t border-white/5 pt-10">
-            <ReactMarkdown>{body}</ReactMarkdown>
+            <ReactMarkdown
+              components={{
+                a: ({ href, children }) =>
+                  href === bookingUrl ? (
+                    <Link href="/book">{children}</Link>
+                  ) : (
+                    <a href={href}>{children}</a>
+                  ),
+              }}
+            >
+              {body}
+            </ReactMarkdown>
           </div>
         </article>
       </main>

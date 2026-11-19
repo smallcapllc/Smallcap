@@ -7,6 +7,15 @@ export const siteDescription =
 
 export const siteUrl = "https://smallcap.cc";
 
+export const contactEmail = "smallcapllc@gmail.com";
+
+export const contactMailto = `mailto:${contactEmail}`;
+
+export const bookingPath = "/book";
+
+/** Absolute URL future blog posts should resolve the BOOKING-LINK placeholder to. */
+export const bookingUrl = `${siteUrl}${bookingPath}`;
+
 export function pageSocial(
   title: string,
   description: string,

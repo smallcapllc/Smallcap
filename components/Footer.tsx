@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { siteDescription } from "@/lib/site";
+import { contactEmail, contactMailto, siteDescription } from "@/lib/site";
 
 export default function Footer() {
   return (
@@ -38,18 +38,33 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <a href="#contact" className="hover:text-primary transition-colors">
+                <Link href="/contact" className="hover:text-primary transition-colors">
                   Contact
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
           <div>
             <h4 className="text-white uppercase tracking-widest text-xs font-bold mb-6">Contact</h4>
             <ul className="space-y-4 text-xs tracking-widest uppercase text-text-dim">
-              <li>info@smallcap.private</li>
-              <li>New York, NY</li>
-              <li className="text-primary">+1 (212) 000-0000</li>
+              <li>
+                <a
+                  href={contactMailto}
+                  className="normal-case tracking-normal text-sm text-primary transition-colors hover:text-accent"
+                >
+                  {contactEmail}
+                </a>
+              </li>
+              <li>
+                <Link href="/contact" className="hover:text-primary transition-colors">
+                  Contact
+                </Link>
+              </li>
+              <li>
+                <Link href="/book" className="hover:text-primary transition-colors">
+                  Book a call
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
