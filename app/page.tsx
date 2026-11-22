@@ -27,7 +27,7 @@ export default function Home() {
               Small Cap Consulting helps established small businesses with day-to-day operations and with automating repetitive work.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Link href="#contact" className="btn-premium">
+              <Link href="/contact" className="btn-premium">
                 Get in Touch
               </Link>
               <Link href="/philosophy" className="btn-outline">
