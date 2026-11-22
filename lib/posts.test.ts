@@ -90,3 +90,78 @@ test("existing posts stay published and future posts stay hidden", () => {
     for (const file of files) fs.rmSync(file, { force: true });
   }
 });
+
+const scheduledPosts: Array<{ slug: string; date: string; title: string }> = [
+  {
+    slug: "ai-integration-gap",
+    date: "2026-11-24",
+    title: "Everyone Uses AI Now. Almost Nobody Has It in Their Operations.",
+  },
+  {
+    slug: "close-instead-of-sell",
+    date: "2026-12-01",
+    title: "Why Most Small Businesses Close Instead of Sell",
+  },
+  {
+    slug: "ai-agent-org-chart",
+    date: "2026-12-03",
+    title: "I Run My Company With a Team of AI Agents. Here's the Org Chart.",
+  },
+  {
+    slug: "sba-rules-2026-owners",
+    date: "2026-12-08",
+    title: "The New SBA Rules Just Changed What Your Business Is Worth",
+  },
+  {
+    slug: "contractor-ap-automation",
+    date: "2026-12-10",
+    title: "Accounts Payable in a Day: What Contractors Get Wrong About AI",
+  },
+  {
+    slug: "modernization-thesis",
+    date: "2026-12-15",
+    title: "Buy at 2.3x, Operate Like a 3.7x Business: The Modernization Thesis",
+  },
+  {
+    slug: "owner-dependence-80-percent-test",
+    date: "2026-12-17",
+    title: "The 80% Test: Could Your Business Run for a Month Without You?",
+  },
+  {
+    slug: "why-2500-sprint",
+    date: "2027-01-05",
+    title: "Why Our Implementation Sprint Costs $2,500 (and Why That's the Point)",
+  },
+  {
+    slug: "repurpose-old-content",
+    date: "2027-01-07",
+    title: "Your Best Marketing Is Already Sitting in a Folder",
+  },
+];
+
+test("scheduled posts stay hidden through November 22, 2026 and publish on their date", () => {
+  const today = new Date("2026-11-22T16:00:00.000Z");
+  const visible = new Set(getAllPosts(today).map((post) => post.slug));
+
+  for (const expected of scheduledPosts) {
+    assert.equal(visible.has(expected.slug), false);
+    assert.equal(getPostBySlug(expected.slug, today), null);
+    assert.ok(expected.date > "2026-11-22");
+
+    const beforePublish = new Date(`${expected.date}T04:30:00.000Z`);
+    assert.equal(getPostBySlug(expected.slug, beforePublish), null);
+
+    const onPublish = new Date(`${expected.date}T05:00:00.000Z`);
+    const post = getPostBySlug(expected.slug, onPublish);
+    assert.ok(post);
+    assert.equal(post.date, expected.date);
+    assert.equal(post.title, expected.title);
+    assert.equal(post.slug, expected.slug);
+    assert.equal(/\bTrey\b/.test(post.content), false);
+    assert.match(post.content, /Tre Robinson/);
+    assert.equal(post.content.includes("Suggested frontmatter"), false);
+    assert.equal(post.content.includes("**Feeds:**"), false);
+    assert.equal(post.content.includes("**Keyword:**"), false);
+    assert.equal(post.content.includes("**CTA:**"), false);
+  }
+});

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { replaceBookingLinks } from "@/lib/booking-cta";
@@ -40,8 +41,8 @@ export default async function BlogPostPage({ params }: Props) {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-grow pt-40 pb-32 px-6">
-        <article className="mx-auto max-w-3xl">
+      <main className="min-w-0 flex-grow pt-40 pb-32 px-6">
+        <article className="mx-auto min-w-0 max-w-3xl">
           <Link
             href="/blog"
             className="text-[10px] uppercase tracking-widest text-text-dim hover:text-primary transition-colors inline-block mb-8"
@@ -67,6 +68,7 @@ export default async function BlogPostPage({ params }: Props) {
           </div>
           <div className="blog-prose border-t border-white/5 pt-10">
             <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
               components={{
                 a: ({ href, children }) =>
                   href === bookingUrl ? (
@@ -74,6 +76,11 @@ export default async function BlogPostPage({ params }: Props) {
                   ) : (
                     <a href={href}>{children}</a>
                   ),
+                table: ({ children }) => (
+                  <div className="blog-table-wrap">
+                    <table>{children}</table>
+                  </div>
+                ),
               }}
             >
               {body}
